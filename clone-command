@@ -1,0 +1,48 @@
+#!/bin/bash
+#Clone_Command
+while true
+    do
+    clear
+    echo "==========================="
+    echo "   Clone Command    "
+    echo "==========================="
+    echo -e "\n"
+    
+    echo -e "\n"
+    
+    echo "Enter 1 for input device"
+    echo "Enter 2 for destination device"
+    echo "Enter 3 to list all disks available"
+    echo "Enter 4 to execute dd command"
+    echo "Enter q to exit"
+    echo -e "\n"
+    echo -e "Enter your choice \c"
+    read -r choice
+    case "$choice" in
+        q) exit;;
+        1) echo -e "Enter source device '/dev/---'
+                
+Enter the last 3 letters of the device eg - sdf or sdb etc"
+
+            read -r source;;
+        2) echo -e "Enter destination device '/dev/---'
+                
+Enter the last 3 letters of the device eg - sdf or sdb etc"
+
+            read -r destination ;;
+        
+        3) echo -e "List all available disks, (y/n) \c"
+                read -r answ
+        if [[ $answ != "y" && $answ != "Y" ]]; then
+        sudo hwinfo --disk --short
+        fi ;;
+        
+        4) echo -e "Formatting $destination, are you sure (y/N?) \c"
+            read -r ans
+        if [[ $ans != "y" && $ans != "Y" ]]; then
+            clear
+            sudo dd if=/dev/"$source" of=/dev/"$destination" bs=4096 status=progress
+            exit
+        fi        
+    esac
+done 
