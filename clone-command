@@ -10,6 +10,14 @@ while true
     
     echo -e "\n"
     
+    echo "Enter 1 to clone a drive"
+    echo "Enter 2 to copy to a destination"
+    read -r initialchoice
+    case "$initialchoice" in
+        q) exit;;
+        
+        1)
+    
     echo "Enter 1 for input device"
     echo "Enter 2 for destination device"
     echo "Enter 3 to list all disks available"
@@ -45,4 +53,6 @@ Enter the last 3 letters of the device eg - sdf or sdb etc"
             exit
         fi        
     esac
+    
+    2)
 done 
