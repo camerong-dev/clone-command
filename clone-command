@@ -13,8 +13,7 @@ while true
     echo "Enter 1 to clone a drive"
     echo "Enter 2 to copy to a destination"
     read -r initialchoice
-    case "$initialchoice" in
-        q) exit;;
+    case "$initialchoice" 
         
         1)
     
@@ -55,4 +54,28 @@ Enter the last 3 letters of the device eg - sdf or sdb etc"
     esac
     
     2)
+    
+    echo "Enter 1 to enter file or folder path you wish to copy"
+    echo "Enter 2 to enter destination"
+    echo "Enter 3 to save hash (leave blank if you do not want to hash files)"
+    echo "Enter 4 to execute"
+        1) 
+            echo "Enter the file or folder path you wish to copy"
+            read -r filesource ;;
+        
+        2)
+            echo "Enter the destination of where you want to save the file / folder"
+            read -r filedestination ;;
+            
+        3)  echo "Enter the destination of where you want to save the hash. (Please leave blank if you do not want to hash the files)"
+            read -r hashdestination ;;
+            
+        4)  echo -e "Are you aure you want to copy $filesource to $filedestination?  (Y / N)"
+            read -r copyans
+            if [[ $copyans != "y" && $copyans != "Y" ]]; then
+            clear 
+            sudo dd if="$filesource" of="$$filedestination" bs=4096 status=progress
+            exit
+        fi
+     esac
 done 
